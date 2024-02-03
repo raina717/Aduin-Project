@@ -1,0 +1,61 @@
+module.exports = {
+  mode: "jit",
+  content: [
+    "./src/**/**/*.{js,ts,jsx,tsx,html,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,html,mdx}",
+  ],
+  darkMode: "class",
+  theme: {
+    screens: { md: { max: "1050px" }, sm: { max: "550px" } },
+    extend: {
+      colors: {
+        blue_gray: {
+          50: "#edf2f7",
+          100: "#cbd5e0",
+          200: "#a0aec0",
+          400: "#718096",
+          500: "#667085",
+          700: "#4a5568",
+          800: "#344054",
+          900: "#2d3748",
+        },
+        yellow: { 50: "#fffff0", 800: "#d69e2e" },
+        white: { A700: "#ffffff" },
+        colors: "#edf2feff",
+        gray: {
+          50: "#f7fafc",
+          100: "#f0fff4",
+          "100_01": "#F7FAFC",
+          300: "#E2E8F0",
+          400: "#CBD5E0",
+          900: "#1e1e1e",
+          "50_01": "#fff5f5",
+          "900_01": "#1a202c",
+          500: "#A0AEC0",
+          600: "#718096",
+        },
+        indigo: {
+          50: "#e2e8f0",
+          100: "#c4ccda",
+          "50_01": "#e8ecf3",
+          A200: "#4475f2",
+        },
+        blue: { 50: "#ebf8ff" },
+        green: { 400: "#48bb78", 500: "#38a169", A700: "#07bc0d" },
+        red: { 300: "#f56565", 500: "#e84c3d", 600: "#e53e3e" },
+        deep_orange: { A200: "#ff7b38" },
+        lime: { 800: "#b7791f" },
+        primary: "#4475F2",
+        secondary: "#FF7B38",
+      },
+      height: {
+        "5.5": "1.375rem",
+      },
+      width: {
+        "5.5": "1.375rem",
+      },
+      fontFamily: { poppins: "Poppins", plusjakartasans: "Plus Jakarta Sans" },
+    },
+  },
+  plugins: [require("@tailwindcss/forms")],
+};
