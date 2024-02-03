@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"title": "JSON Schema for register",
+	"$id": "user/register",
+	"type": "object",
+	"properties": {
+		"fullname": {
+			"type": "string",
+			"minLength": 1
+		},
+		"whatsapp_number": {
+			"type": "string",
+			"minLength": 1
+		},
+        "email": {
+			"type": "string",
+            "format": "email",
+			"minLength": 1
+		},
+        "password": {
+			"type": "string",
+			"minLength": 1
+		},
+        "confirm_password": {
+			"type": "string",
+			"minLength": 1
+		}
+	},
+	"required": [ "fullname", "email", "password", "confirm_password" ],
+	"additionalProperties": false
+}

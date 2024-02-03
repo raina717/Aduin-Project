@@ -1,0 +1,37 @@
+{
+     "GoVersion": "1.21",
+     "Version": "v1.16.3",
+     "LibraryName": "github.com/golangid/candi",
+     "ServiceName": "service-auth",
+     "PackagePrefix": "service-auth",
+     "ProtoSource": "service-auth/api/proto",
+     "Owner": "",
+     "License": "",
+     "Year": 2023,
+     "IsMonorepo": false,
+     "RestHandler": true,
+     "GRPCHandler": false,
+     "GraphQLHandler": false,
+     "FiberRestHandler": true,
+     "KafkaHandler": false,
+     "SchedulerHandler": false,
+     "RedisSubsHandler": false,
+     "TaskQueueHandler": false,
+     "PostgresListenerHandler": false,
+     "RabbitMQHandler": false,
+     "IsWorkerActive": false,
+     "RedisDeps": false,
+     "SQLDeps": true,
+     "MongoDeps": false,
+     "SQLUseGORM": true,
+     "ArangoDeps": false,
+     "SQLDriver": "postgres",
+     "Modules": [
+          {
+               "ModuleName": "notification"
+          },
+          {
+               "ModuleName": "user"
+          }
+     ]
+}

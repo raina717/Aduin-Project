@@ -1,0 +1,74 @@
+version: "3.9"
+
+services:
+  postgresql:
+    image: postgres:latest
+    environment:
+      - POSTGRES_ADMIN_PASSWORD=postgres
+      - POSTGRES_DB=aduindb
+      - POSTGRES_USER=aduinuser
+      - POSTGRES_PASSWORD=aduin@190
+    ports:
+      - "5432:5432"
+    networks:
+      - aduin_network
+    volumes:
+      - postgres_aduin_data:/var/lib/pgsql/data
+      - ./aduindb.sql:/docker-entrypoint-initdb.d/init.sql
+
+  service-auth:
+    build:
+      context: ./service-auth
+      dockerfile: Dockerfile
+    image: service-auth
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./service-auth/storage:/usr/app/storage
+    depends_on:
+      - postgresql
+    networks:
+      - aduin_network
+
+  service-complaint:
+    build:
+      context: ./service-complaint
+      dockerfile: Dockerfile
+    image: service-complaint
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./service-complaint/storage:/usr/app/storage
+    depends_on:
+      - postgresql
+    networks:
+      - aduin_network
+
+  aduin_website:
+    build:
+      context: ./aduin
+      dockerfile: Dockerfile
+    image: aduin
+    ports:
+      - "3000:3000"
+    networks:
+      - aduin_network
+
+  aduin_admin:
+    build:
+      context: ./super_admin
+      dockerfile: Dockerfile
+    image: super_admin
+    ports:
+      - "3001:3000"
+    networks:
+      - aduin_network
+
+networks:
+  aduin_network:
+    driver: bridge
+
+volumes:
+  postgres_aduin_data:
+
+

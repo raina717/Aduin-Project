@@ -1,0 +1,1375 @@
+{
+	"info": {
+		"_postman_id": "9a154f19-1ee5-471e-9413-c2576dee079c",
+		"name": "Adu.in",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7847618"
+	},
+	"item": [
+		{
+			"name": "Service Auth",
+			"item": [
+				{
+					"name": "Module User",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()\r",
+											"pm.environment.set(\"user_auth_token\", response.data.token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"nurlatif.ardhi@gmail.com\",\r\n    \"password\": \"testingOnly%2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/user/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Login - 400",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"nurlatif.ardhi@gmail.com\",\r\n    \"password\": \"Aduin@9901\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"code\": 400,\n    \"message\": \"Invalid Email or Password\"\n}"
+								},
+								{
+									"name": "Login - 200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"nurlatif.ardhi@gmail.com\",\r\n    \"password\": \"Aduin@9901\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"code\": 400,\n    \"message\": \"Login Success\",\n    \"data\": {\n        \"token\": \"I8/HGjqEewWzg87GPOFN2Ym0glr+IRei8OeRhn/da9CIxjuxZTMyY8NpRYieGjbEpRknNys9Uhtpux3TZJrIwJ3KwrQ9xfz6YkO/21boUz3/CFECKPXnjYidR7lGAr2X4rRQma0QfzrR7kSoXcx3s9/sB0HFHL0KN3PY/dYPg2VC4lGAle5EiHMYdV2xnIDMIHiwl7LEU2Z0aiWEPrxnRKRDbLsyXVQTFOm/Hpw94o62CsKtBxkQBwfs3PvtRA48\",\n        \"refresh_token\": \"\",\n        \"user\": {\n            \"fullname\": \"Latif Van Djava\",\n            \"email\": \"nurlatif.ardhi@gmail.com\",\n            \"profile_photo\": \"https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg\",\n            \"whatsapp_number\": \"08812839122\",\n            \"role\": \"user\"\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Register",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{basic_auth_password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{basic_auth_username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullname\": \"Latif Van Djava 2\",\r\n    \"whatsapp_number\": \"089129381233\",\r\n    \"email\": \"nurlatif97@outlook.com\",\r\n    \"password\": \"testingOnly%2\",\r\n    \"confirm_password\": \"testingOnly%2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/user/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Register - 200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"fullname\": \"Latif Van Djava\",\r\n    \"whatsapp_number\": \"08812839122\",\r\n    \"email\": \"nurlatif.ardhi@gmail.com\",\r\n    \"password\": \"testingOnly%2\",\r\n    \"confirm_password\": \"testingOnly%2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 201,\r\n    \"message\": \"Register Success\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Verify Email Register",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{basic_auth_password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{basic_auth_username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\": \"cvB/8wdnvgYOPx4BoJ7gYsBXACPBGzAscu8mynq8P7GT+wZ6jktgeM3Lo2rKgdfo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/user/verify-email",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"verify-email"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Verify Email - 200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"token\": \"cvB/8wdnvgYOPx4BoJ7gYsBXACPBGzAscu8mynq8P7GT+wZ6jktgeM3Lo2rKgdfo\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/verify-email",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"verify-email"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 200,\r\n    \"message\": \"Verify Email Success\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Get User Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/user/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get User Profile",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/profile",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 200,\r\n    \"message\": \"Success\",\r\n    \"data\": {\r\n        \"fullname\": \"Latif Van Djava\",\r\n        \"email\": \"nurlatif.ardhi@gmail.com\",\r\n        \"profile_photo\": \"https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg\",\r\n        \"whatsapp_number\": \"08812839122\",\r\n        \"address\": \"Jl. Menuju 1001 Kebahagiaan Yang Haqiqi\",\r\n        \"role\": \"user\"\r\n    }\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullname\": \"Latif Van Djava\",\r\n    \"profile_photo\": \"https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg\",\r\n    \"whatsapp_number\": \"089290192999\",\r\n    \"address\": \"Jl. Menuju 1001 Kebahagiaan Yang Haqiqi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/user/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update Profile - 200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"fullname\": \"Latif Van Djava\",\r\n    \"email\": \"nurlatif.ardhi@gmail.com\",\r\n    \"profile_photo\": \"https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg\",\r\n    \"whatsapp_number\": \"08812839122\",\r\n    \"address\": \"Jl. Menuju 1001 Kebahagiaan Yang Haqiqi\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/profile",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 200,\r\n    \"message\": \"Update Profile Success\",\r\n    \"data\": {\r\n        \"fullname\": \"Latif Van Djava\",\r\n        \"email\": \"nurlatif.ardhi@gmail.com\",\r\n        \"profile_photo\": \"https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg\",\r\n        \"whatsapp_number\": \"08812839122\",\r\n        \"address\": \"Jl. Menuju 1001 Kebahagiaan Yang Haqiqi\",\r\n        \"role\": \"user\"\r\n    }\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Request Forget Password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"nurlatif.ardhi@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/user/forgot-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"forgot-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Request Forget Password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"nurlatif.ardhi@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/forgot-password",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"forgot-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 200,\r\n    \"message\": \"Forgot Password Success\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Password",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{basic_auth_password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{basic_auth_username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"testingOnly%2\",\r\n    \"confirm_password\": \"testingOnly%2\",\r\n    \"token\": \"6GYKZGGuk+08IaUzT1HLsxqgut25aDJWzbZAKncas94=\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/user/update-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"update-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update Password - 200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"password\": \"testingOnly%2\",\r\n    \"confirm_password\": \"testingOnly%2\",\r\n    \"token\": \"6GYKZGGuk+08IaUzT1HLsxqgut25aDJWzbZAKncas94=\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/update-password",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"update-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 201,\r\n    \"message\": \"Update Password Success\"\r\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Module Notification",
+					"item": [
+						{
+							"name": "Get My Notification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/notification/me?isRead=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"notification",
+										"me"
+									],
+									"query": [
+										{
+											"key": "isRead",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get My Notification - 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8000/api/v1/notification/me?is_read=true",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"notification",
+												"me"
+											],
+											"query": [
+												{
+													"key": "is_read",
+													"value": "true"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 200,\r\n    \"message\": \"Success\",\r\n    \"meta\": {\r\n        \"page\": 1,\r\n        \"limit\": 10,\r\n        \"totalPage\": 1,\r\n        \"totalRecords\": 1\r\n    },\r\n    \"data\": [\r\n        {\r\n            \"title\": \"Pemerintah Kabupaten\",\r\n            \"description\": \"Pemerintah Kabupaten memberi tindakan <b>Awas Tukang Bakso Lewat</b>\",\r\n            \"icon\": \"https://pinrangkab.go.id/wp-content/uploads/2019/07/LOGO-KABUPATEN-PINRANG-263x300-263x300.png\",\r\n            \"is_read\": \"true\",\r\n            \"created_at\": \"2023-12-09T05:00:27+07:00\"\r\n        }\r\n    ]\r\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Module Admin",
+					"item": [
+						{
+							"name": "Get List Users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/admin/users?role=admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"users"
+									],
+									"query": [
+										{
+											"key": "role",
+											"value": "admin",
+											"description": "admin, user"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get List Users - 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8000/api/v1/admin/users?role=admin",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"admin",
+												"users"
+											],
+											"query": [
+												{
+													"key": "role",
+													"value": "admin",
+													"description": "admin, user"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalPage\": 1,\n        \"totalRecords\": 1\n    },\n    \"data\": [\n        {\n            \"fullname\": \"Latif Van Djava\",\n            \"email\": \"nurlatif.ardhi@gmail.com\",\n            \"status\": true,\n            \"created_at\": \"2023-12-09T05:00:27+07:00\",\n            \"updated_at\": \"2023-12-09T05:00:27+07:00\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Detail User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/admin/user/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"user",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Admin",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{basic_auth_password}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{basic_auth_username}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullname\": \"Latif Van Djava\",\r\n    \"email\": \"nurlatif.ardhi@gmail.com\",\r\n    \"role\": \"admin\",\r\n    \"status\": \"active\",\r\n    \"profile_photo\": \"https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/admin/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Add Admin - 200",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"fullname\": \"Latif Van Djava\",\r\n    \"email\": \"nurlatif.ardhi@gmail.com\",\r\n    \"role\": \"admin\",\r\n    \"status\": \"active\",\r\n    \"profile_photo\": \"https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/user/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 201,\r\n    \"message\": \"Add Admin Success\"\r\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Service Complaint",
+			"item": [
+				{
+					"name": "Module Complaint",
+					"item": [
+						{
+							"name": "Get All Complaints",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/complaints?status=ON_PROCESS&is_viral=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"complaints"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "ON_PROCESS",
+											"description": "SUBMITED, ON_PROCESS, REJECTED, DONE"
+										},
+										{
+											"key": "is_viral",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Complaints - 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8000/api/v1/complaints?status=ON_PROCESS",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"complaints"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "ON_PROCESS",
+													"description": "SUBMITED, ON_PROCESS, REJECTED, DONE"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"code\": 200,\n    \"message\": \"Success\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"totalPage\": 1,\n        \"totalRecords\": 1\n    },\n    \"aggregations\": {\n        \"statuses\": [\n            {\n                \"id\": \"\",\n                \"title\": \"Semua\",\n                \"count\": 3\n            },\n            {\n                \"id\": \"SUBMITED\",\n                \"title\": \"Aduan Diproses\",\n                \"count\": 1\n            },\n            {\n                \"id\": \"DONE\",\n                \"title\": \"Aduan Selesai\",\n                \"count\": 1\n            },\n            {\n                \"id\": \"REJECTED\",\n                \"title\": \"Aduan Ditolak\",\n                \"count\": 1\n            }\n        ]\n    },\n    \"data\": [\n        {\n            \"complaint_number\": \"190293019223\",\n            \"submited_by\": \"nurlatif.ardhi@gmail.com\",\n            \"title\": \"Penggalian PDAM membuat macet\",\n            \"location\": \"Jl. Kedawung Haji Apud Cirebon\",\n            \"is_anonymous\": true,\n            \"date\": \"2023-12-09T05:00:27+07:00\",\n            \"created_at\": \"2023-12-09T05:00:27+07:00\",\n            \"category\": \"Layanan Publik\",\n            \"response_count\": 2,\n            \"like_count\": 90,\n            \"is_liked\": true,\n            \"comment_count\": 3,\n            \"evidences\": [\n                {\n                    \"url\": \"https://google.com/gambarJalanRusak\",\n                    \"type\": \"image\"\n                }\n            ]\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Detail Complaint",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/api/v1/complaints/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"complaints",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Detail Complaint - 200",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8000/api/v1/complaints/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"complaints",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 200,\r\n    \"message\": \"Success\",\r\n    \"data\": {\r\n        \"complaint_number\": \"190293019223\",\r\n        \"submited_by\": \"nurlatif.ardhi@gmail.com\",\r\n        \"title\": \"Penggalian PDAM membuat macet\",\r\n        \"location\": \"\",\r\n        \"is_anonymous\": true,\r\n        \"date\": \"2023-12-09T05:00:27+07:00\",\r\n        \"created_at\": \"2023-12-09T05:00:27+07:00\",\r\n        \"category\": \"Layanan Publik\",\r\n        \"responses\": [\r\n            {\r\n               \"submited_by\": \"DPRD Kota Cirebon\",\r\n               \"role\": \"admin\",\r\n               \"profile_photo\": \"\",\r\n               \"description\": \"Oke segera ditindaklanjuti\"\r\n            }\r\n        ],\r\n        \"like_count\": 90,\r\n        \"is_liked\": true,\r\n        \"comments\": [\r\n            {\r\n               \"submited_by\": \"DPRD Kota Cirebon\",\r\n               \"profile_photo\": \"\",\r\n               \"comment\": \"Oke segera ditindaklanjuti\"\r\n            }\r\n        ],\r\n        \"comment_count\": 3,\r\n        \"evidences\": [\r\n            {\r\n                \"url\": \"https://google.com/gambarJalanRusak\",\r\n                \"type\": \"image\"\r\n            }\r\n        ]\r\n    }\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Add Complaint",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Penggalian PDAM membuat macet\",\r\n    \"description\": \"\",\r\n    \"location\": \"\",\r\n    \"date\": \"2023-12-09T05:00:27+07:00\",\r\n    \"category\": \"Layanan Publik\",\r\n    \"evidences\": [\r\n        {\r\n            \"url\": \"https://google.com/gambarJalanRusak\",\r\n            \"type\": \"image\"\r\n        }\r\n    ],\r\n    \"is_anonymous\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/complaints",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"complaints"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Add Complaint",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Penggalian PDAM membuat macet\",\r\n    \"description\": \"\",\r\n    \"location\": \"\",\r\n    \"date\": \"2023-12-09T05:00:27+07:00\",\r\n    \"category\": \"Layanan Publik\",\r\n    \"evidences\": [\r\n        {\r\n            \"url\": \"https://google.com/gambarJalanRusak\",\r\n            \"type\": \"image\"\r\n        }\r\n    ],\r\n    \"is_anonymous\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/api/v1/complaints",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"complaints"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": "",
+											"type": "text"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n    \"success\": true,\r\n    \"code\": 201,\r\n    \"message\": \"Add Complaint Success\"\r\n}"
+								}
+							]
+						},
+						{
+							"name": "Add Response",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"complaint_id\": \"testing\",\r\n    \"description\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/complaints/response",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"complaints",
+										"response"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"complaint_id\": \"testing\",\r\n    \"comment\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/complaints/comment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"complaints",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "3rd Party",
+			"item": [
+				{
+					"name": "Mailgun",
+					"item": [
+						{
+							"name": "Send Mail",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{mailgun_api_key}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "api",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from",
+											"value": "Excited User <mailgun@sandbox6f8871bed2484a6c9d40ca4a61a1a689.mailgun.org>",
+											"type": "text"
+										},
+										{
+											"key": "to",
+											"value": "YOU@YOUR_DOMAIN_NAME",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "to",
+											"value": "nurlatif97@outlook.com",
+											"type": "text"
+										},
+										{
+											"key": "subject",
+											"value": "Hello",
+											"type": "text"
+										},
+										{
+											"key": "text",
+											"value": "Testing some Mailgun awesomeness!",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.mailgun.net/v3/{{mailgun_domain}}/messages",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mailgun",
+										"net"
+									],
+									"path": [
+										"v3",
+										"{{mailgun_domain}}",
+										"messages"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
